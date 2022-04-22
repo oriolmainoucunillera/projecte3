@@ -1,0 +1,80 @@
+/* LA PAGINA CONTÉ BOOTSTRAP, PERÒ CONTÉ AQUESTS ESTILS CSS */
+
+nav {
+    background-color: #F0F5F8;
+}
+
+nav a span {
+    color: #1ABC9C;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 25px;
+    letter-spacing: 2.5px;
+}
+
+nav a#iniciarsessio {
+    margin: 0 5px;
+    background: #1ABC9C;
+    color: white;
+}
+
+main div#carruselImatges img {
+    height: 500px;
+}
+
+main div.container section,
+footer div#peupagina {
+    padding: 3% 0;
+}
+
+main div.container section h2 {
+    text-align: center;
+    padding: 2% 0;
+}
+
+main div.container section div.veuremes {
+    padding: 5% 0;
+}
+
+main div.container div.card-body p#vermell,
+main div.container div.card-body span {
+    color: red;
+}
+
+main div.container div#activitat {
+    width: 25rem;
+}
+
+/*main div.container section#activitats div.row img {*/
+/*    height: 150px;*/
+/*}*/
+
+main div.container div#activitat img {
+    height: 250px;
+    margin: 10px 0;
+}
+
+main div.container div#activitat input[type=submit] {
+    margin: 5% 0;
+}
+
+main div.container section#activitats form#formbuscardata {
+    margin: 5% 0;
+}
+
+main div.container section#activitats input#boto_buscar_data {
+    margin: 5px 0;
+}
+
+footer {
+    background-color: #1ABC9C;
+}
+
+/* PART RESPONSIVE DE LA WEB */
+
+@media screen and (max-width: 385px) {
+    nav a span {
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+}
