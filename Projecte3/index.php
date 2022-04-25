@@ -46,12 +46,14 @@
             <section id="qui_som">
                 <h2>Qui som?</h2>
 
-                <p>
-                    Losrem ipssum dolor sit amet consectetur, adipisiscing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!
-                    Lorsem ipssum dolor sit amet consectetur, adipisiscing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!
-                    Lorsem ipssum dolor sit amet consectetur, adipisicsing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!
-                    Lorsem ipssum dolor sit amet consectetur, adipisicsing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!
-                </p>
+                <?php
+                    $qui_som = "SELECT * FROM qui_som";
+                    $resultats = $connexio->query($qui_som);
+
+                    while($row = $resultats->fetch_assoc()) {
+                        echo "<p style='font-size: 18px'>" . $row["text"] . "</p>";
+                    }
+                ?>
             </section>
 
             <hr>
@@ -60,9 +62,8 @@
                 <h2>Últimes activitats creades</h2>
 
                 <div class="row">
-
                     <?php
-                        $sql = "SELECT * FROM activitat WHERE esta_acceptada = 1 AND (numero_participants-participants_disponibles) > 0 ORDER BY id DESC LIMIT 6";
+                        $sql = "SELECT * FROM activitat WHERE esta_acceptada = 1 AND participants_disponibles > 0 ORDER BY id DESC LIMIT 6";
                         $result = $connexio->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -143,7 +144,7 @@
                                                     echo "<p class='text-center text-muted'>" . round($barra_progres) . "% disponible.";
                                                 ?>
                                                 <div class="veuremes">
-                                                    <a href="#" class="btn btn-success">Veure més</a>
+                                                    <a href="detalls_activitat.php?id=<?php echo $row["id"]?>" class="btn btn-success">Veure més</a>
                                                 </div>
                                             </div>
                                         </div>

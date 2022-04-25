@@ -19,11 +19,11 @@
     </nav>
 
     <main>
-
         <div class="container">
             <section id="buscar_activitats">
-                <h2>Buscar activitats</h2>
+                <a href="crear_activitat.php" class="btn btn-info">Crear activitat</a>
 
+                <h2>Buscar activitats</h2>
 <!--                SELECT * FROM activitat WHERE dia_hora BETWEEN '20220410' AND (1 + '20220410')-->
 
                 <form action="activitats.php" method="post">
@@ -123,7 +123,7 @@
                                             echo "<p class='text-center text-muted'>" . round($barra_progres) . "% disponible.";
                                             ?>
                                             <div class="veuremes">
-                                                <a href="#" class="btn btn-success">Veure més</a>
+                                                <a href="detalls_activitat.php?id=<?php echo $row_dates_buscar["id"]?>" class="btn btn-success">Veure més</a>
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +133,7 @@
                         } else {
                             ?>
                                 <div class="alert alert-danger" role="alert">
-                                    <h4 class="alert-heading">Cap activitat trobada!</h4>
+                                    <h4 class="alert-heading">Cap activitat trobada amb aquesta data.</h4>
                                 </div>
                             <?php
                         }
@@ -150,7 +150,7 @@
                 <div class="row">
 
                     <?php
-                        $sql = "SELECT * FROM activitat WHERE esta_acceptada = 1 AND (numero_participants-participants_disponibles) > 0 ORDER BY dia_hora ASC";
+                        $sql = "SELECT * FROM activitat WHERE esta_acceptada = 1 AND participants_disponibles > 0 ORDER BY dia_hora ASC";
                         $result = $connexio->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -231,7 +231,7 @@
                                                     echo "<p class='text-center text-muted'>" . round($barra_progres) . "% disponible.";
                                                 ?>
                                                 <div class="veuremes">
-                                                    <a href="#" class="btn btn-success">Veure més</a>
+                                                    <a href="detalls_activitat.php?id=<?php echo $row["id"]?>" class="btn btn-success">Veure més</a>
                                                 </div>
                                             </div>
                                         </div>
