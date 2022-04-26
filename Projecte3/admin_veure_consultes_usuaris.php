@@ -34,7 +34,7 @@
                                     if ($connexio->query($update) === TRUE) {
                                         ?>
                                             <div class="alert alert-danger" role="alert">
-                                                Consulta dels usuaris eliminada.
+                                                Consulta eliminada.
                                             </div>
                                         <?php
                                     }

@@ -36,7 +36,6 @@
                                     $localitat = $_POST['localitat'];
                                     $password = $_POST['password'];
                                     $password2 = $_POST['password2'];
-                                    $imatge_perfil = "sensefoto.jpg";
 
                                     $contrasenya_xifrada = password_hash($password, PASSWORD_DEFAULT, array("cost"=>12));
 
@@ -44,15 +43,14 @@
                                     $connexio_PDO->exec("SET CHARACTER SET utf8");
 
                                     if ($password == $password2) {
-                                        $sql_afegir_usuari = "INSERT INTO usuari (nom,username,correu,contrasenya,localitat,foto_perfil,es_admin) VALUES (:nom,:username,:email,:contrasenya,:localitat,:foto_perfil,0)";
+                                        $sql_afegir_usuari = "INSERT INTO usuari (nom,username,correu,contrasenya,localitat,es_admin) VALUES (:nom,:username,:email,:contrasenya,:localitat,0)";
                                         $resultat = $connexio_PDO->prepare($sql_afegir_usuari);
                                         $resultat->execute(array(
                                             ":nom" => $nom,
                                             ":username" => $username,
                                             ":email" => $email,
                                             ":contrasenya" => $contrasenya_xifrada,
-                                            ":localitat" => $localitat,
-                                            ":foto_perfil" => $imatge_perfil
+                                            ":localitat" => $localitat
                                             )
                                         );
 

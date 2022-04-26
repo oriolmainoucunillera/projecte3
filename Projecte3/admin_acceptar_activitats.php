@@ -95,6 +95,12 @@
                                                             ?>
                                                         </p>
                                                         <p class="card-text">
+                                                            Ubicació:
+                                                            <?php
+                                                                echo $row["ubicacio"] . ".";
+                                                            ?>
+                                                        </p>
+                                                        <p class="card-text">
                                                             Participants en total:
                                                             <?php
                                                             echo $row["numero_participants"] . ".";
@@ -141,7 +147,7 @@
                                     } else {
                                         ?>
                                         <div class="alert alert-danger" role="alert">
-                                            <h4 class="alert-heading">Cap activitat disponible!</h4>
+                                            <h4 class="alert-heading">Cap activitat per acceptar</h4>
                                             <hr>
                                             <p class="mb-0">No hi ha cap activitat per acceptar/rebutjar.</p> <br>
                                         </div>

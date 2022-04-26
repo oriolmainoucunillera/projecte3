@@ -50,14 +50,15 @@
                                                     echo "<td>" . $row['correu'] . "</td>";
                                                     echo "<td>" . $row['localitat'] . "</td>";
                                                     echo "<td>";
-                                                        $select_act = "SELECT * FROM activitat WHERE esta_acceptada = 1 && id_usuari=" . $row['id'];
+                                                        $data_ara = date("Y-m-d H:i:s");
+                                                        $select_act = "SELECT * FROM activitat WHERE dia_hora >= '$data_ara' AND esta_acceptada = 1 AND id_usuari=" . $row['id'] . " ORDER BY dia_hora ASC";
                                                         $resultatss = $connexio->query($select_act);
                                                         if ($resultatss->num_rows > 0) {
                                                             while($row_act = $resultatss->fetch_assoc()) {
-                                                                echo $row_act["nom"] . "<br>";
+                                                                echo "- " . $row_act["nom"] . "<br>";
                                                             }
                                                         } else {
-                                                            echo "-";
+                                                            echo "------";
                                                         }
                                                     echo "</td>";
                                                 echo "</tr>";

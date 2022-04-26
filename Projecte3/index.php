@@ -63,7 +63,9 @@
 
                 <div class="row">
                     <?php
-                        $sql = "SELECT * FROM activitat WHERE esta_acceptada = 1 AND participants_disponibles > 0 ORDER BY id DESC LIMIT 6";
+                        $data_ara = date("Y-m-d H:i:s");
+
+                        $sql = "SELECT * FROM activitat WHERE dia_hora >= '$data_ara' AND esta_acceptada = 1 AND participants_disponibles > 0 ORDER BY dia_hora ASC LIMIT 6";
                         $result = $connexio->query($sql);
 
                         if ($result->num_rows > 0) {
@@ -81,11 +83,6 @@
                                                     ?>
                                                 </h5>
                                                 <p class="card-text">
-                                                    <?php
-                                                        echo $row["descripcio"];
-                                                    ?>
-                                                </p>
-                                                <p class="card-text">
                                                     Creada per:
                                                     <?php
                                                         $sql_usuari = "SELECT nom FROM usuari WHERE id=" . $row["id_usuari"];
@@ -98,6 +95,12 @@
                                                         } else {
                                                             echo "Usuari desconegut.";
                                                         }
+                                                    ?>
+                                                </p>
+                                                <p class="card-text">
+                                                    Ubicació:
+                                                    <?php
+                                                        echo $row["ubicacio"] . ".";
                                                     ?>
                                                 </p>
                                                 <p class="card-text">

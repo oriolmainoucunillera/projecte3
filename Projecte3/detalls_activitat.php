@@ -73,27 +73,39 @@
                                             ?>
                                         </p>
                                         <?php
-                                            if (isset($_SESSION["id_usuari_sessio"])) {
-                                                ?>
-                                                    <form action="detalls_activitat.php?id=<?php echo $id_activitat_actual ?>" method="post" class="pt-3">
-                                                        <input type="hidden" name="id_act_registrat" value="<?php echo $id_activitat_actual ?>">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <input type="number" name="participants_act_registrat" class="form-control" placeholder="Num participants" min="1" max="<?php echo $row['participants_disponibles'] ?>" required>
+                                            $data_ara = date("Y-m-d H:i:s");
+
+                                            if ($row['dia_hora'] >= $data_ara) {
+                                                if (isset($_SESSION["id_usuari_sessio"])) {
+                                                    ?>
+                                                        <form action="detalls_activitat.php?id=<?php echo $id_activitat_actual ?>" method="post" class="pt-3">
+                                                            <input type="hidden" name="id_act_registrat" value="<?php echo $id_activitat_actual ?>">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <input type="number" name="participants_act_registrat" class="form-control" placeholder="Num participants" min="1" max="<?php echo $row['participants_disponibles'] ?>" required>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <input type="submit" value="Apuntar" class="btn btn-outline-primary" name="registrar_activitat">
+                                                                </div>
                                                             </div>
-                                                            <div class="col">
-                                                                <input type="submit" value="Apuntar" class="btn btn-outline-primary" name="registrar_activitat">
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                <?php
+                                                        </form>
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                        <h5 class="card-text text-muted text-center">
+                                                            Si vol apuntar-se a l'activitat inicia sessió.
+                                                        </h5>
+                                                    <?php
+                                                }
                                             } else {
                                                 ?>
                                                     <h5 class="card-text text-muted text-center">
-                                                        Si vol apuntar-se a l'activitat inicia sessió.
+                                                        No es pot apuntar a l'activitat. Ja ha vençut.
                                                     </h5>
                                                 <?php
                                             }
+
+
                                         ?>
                                     </div>
                                 </div>

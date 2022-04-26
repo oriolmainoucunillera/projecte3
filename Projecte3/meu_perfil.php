@@ -28,7 +28,12 @@
                                     <a href="admin_veure_consultes_usuaris.php" class="btn btn-primary">Consultes usuaris</a>
                                     <a href="admin_acceptar_activitats.php" class="ms-1 btn btn-outline-primary">Acceptar activitats</a>
                                     <br><br>
-                                    <a href="admin_tots_usuaris_registrats.php" class="btn btn-info">Usuaris registrats</a>
+                                    <a href="admin_tots_usuaris_registrats.php" class="btn btn-outline-info">Usuaris registrats</a>
+                                    <a href="activitats_registrat.php" class="ms-1 btn btn-info">Activitats jo apuntat</a>
+                                <?php
+                            } else {
+                                ?>
+                                    <a href="activitats_registrat.php" class="btn btn-primary">Activitats jo apuntat</a>
                                 <?php
                             }
                         ?>
@@ -44,7 +49,7 @@
                                             if($_SESSION['es_admin_usuari_sessio'] == 1) {
                                                 echo "<p class='text-muted'>(*) Ets admin de la pàgina.</p>";
                                             }
-                                            echo "<h4 class='card-text'>" . $_SESSION['nom_usuari_sessio'] . "</h4>";
+                                            echo "<h4 class='card-text'>" . $_SESSION['nom_usuari_sessio'] . "</h4> <br>";
                                             echo "<p class='card-text'>Nom d'usuari: " . $_SESSION['username_usuari_sessio'] . "</p>";
                                             echo "<p class='card-text'>Correu electrònic: " . $_SESSION['correu_usuari_sessio'] . "</p>";
                                             echo "<p class='card-text'>Localitat: " . $_SESSION['localitat_usuari_sessio'] . "</p>";
