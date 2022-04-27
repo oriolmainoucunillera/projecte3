@@ -1,4 +1,5 @@
 <?php
+    include "servidor/connexio.php";
     include "servidor/connexio_PDO.php";
 ?>
 

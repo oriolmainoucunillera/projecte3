@@ -1,5 +1,5 @@
 <?php
-    include "servidor/connexio_PDO.php";
+    include "servidor/connexio.php";
 ?>
 
 <!doctype html>
@@ -25,21 +25,14 @@
                         <?php
                             if ($_SESSION['es_admin_usuari_sessio'] == 1) {
                                 ?>
-                                    <a href="admin_veure_consultes_usuaris.php" class="btn btn-primary">Consultes usuaris</a>
-                                    <a href="admin_acceptar_activitats.php" class="ms-1 btn btn-outline-primary">Acceptar activitats</a>
-                                    <br><br>
+                                    <a href="admin_veure_consultes_usuaris.php" class="btn btn-outline-primary">Consultes usuaris</a>
+                                    <a href="admin_acceptar_activitats.php" class="btn btn-outline-success">Acceptar activitats</a>
                                     <a href="admin_tots_usuaris_registrats.php" class="btn btn-outline-info">Usuaris registrats</a>
-                                    <a href="activitats_registrat.php" class="ms-1 btn btn-info">Activitats jo apuntat</a>
-                                <?php
-                            } else {
-                                ?>
-                                    <a href="activitats_registrat.php" class="btn btn-primary">Activitats jo apuntat</a>
                                 <?php
                             }
                         ?>
 
-
-                        <div class="row justify-content-center pt-2">
+                        <div class="row justify-content-center pt-4">
                             <div class="col-md-8" id="info_perfil">
                                 <div class="card w-80">
                                     <div class="card-body">
@@ -56,6 +49,7 @@
                                         ?>
                                         <hr>
                                         <a href="crear_activitat.php" class="btn btn-success">Crear activitat</a>
+                                        <a href="registrat_activitats.php" class="btn btn-primary">Activitats apuntades</a>
                                     </div>
                                 </div>
                             </div>

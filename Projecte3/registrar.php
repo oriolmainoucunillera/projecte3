@@ -1,4 +1,5 @@
 <?php
+    include "servidor/connexio.php";
     include "servidor/connexio_PDO.php";
 ?>
 
@@ -37,26 +38,34 @@
                                     $password = $_POST['password'];
                                     $password2 = $_POST['password2'];
 
-                                    $contrasenya_xifrada = password_hash($password, PASSWORD_DEFAULT, array("cost"=>12));
+                                    $sql = "SELECT * FROM usuari WHERE username = '$username' OR correu = '$email'";
+                                    $result = $connexio->query($sql);
 
-                                    $connexio_PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                    $connexio_PDO->exec("SET CHARACTER SET utf8");
+                                    if ($result->num_rows == 0) {
+                                        $contrasenya_xifrada = password_hash($password, PASSWORD_DEFAULT, array("cost"=>12));
 
-                                    if ($password == $password2) {
-                                        $sql_afegir_usuari = "INSERT INTO usuari (nom,username,correu,contrasenya,localitat,es_admin) VALUES (:nom,:username,:email,:contrasenya,:localitat,0)";
-                                        $resultat = $connexio_PDO->prepare($sql_afegir_usuari);
-                                        $resultat->execute(array(
-                                            ":nom" => $nom,
-                                            ":username" => $username,
-                                            ":email" => $email,
-                                            ":contrasenya" => $contrasenya_xifrada,
-                                            ":localitat" => $localitat
-                                            )
-                                        );
+                                        $connexio_PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                        $connexio_PDO->exec("SET CHARACTER SET utf8");
 
-                                        echo "<div class='alert alert-success' role='alert'>Registre fet correctament. Inicia sessió.</div>";
+                                        if ($password == $password2) {
+                                            $sql_afegir_usuari = "INSERT INTO usuari (nom,username,correu,contrasenya,localitat,es_admin) VALUES (:nom,:username,:email,:contrasenya,:localitat,0)";
+                                            $resultat = $connexio_PDO->prepare($sql_afegir_usuari);
+                                            $resultat->execute(array(
+                                                    ":nom" => $nom,
+                                                    ":username" => $username,
+                                                    ":email" => $email,
+                                                    ":contrasenya" => $contrasenya_xifrada,
+                                                    ":localitat" => $localitat
+                                                )
+                                            );
+
+                                            echo "<div class='alert alert-success' role='alert'>Registre fet correctament. Inicia sessió.</div>";
+                                        } else {
+                                            echo "<div class='alert alert-danger'  role='alert'>Error al fer el registre. Comprova les teves dades.</div>";
+                                        }
+
                                     } else {
-                                        echo "<div class='alert alert-danger'  role='alert'>Error al fer el registre. Comprova les teves dades.</div>";
+                                        echo "<div class='alert alert-danger' role='alert'>Nom d'usuari i/o correu electrònic ja creats.</div>";
                                     }
                                 }
                             ?>
