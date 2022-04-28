@@ -3,12 +3,12 @@
 
     // Fem la connexió
     $connexio = new mysqli("localhost", "root", "", "projectemedia");
+    $connexio->set_charset("utf8");
 
     // Comprovar si funciona --> si no funciona es mostra un error a la web
     if ($connexio->connect_error) {
         die("ERROR: " . $connexio->connect_error);
     }
-
 
     $expireAfter = 15;
 

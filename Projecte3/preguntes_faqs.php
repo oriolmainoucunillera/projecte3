@@ -22,7 +22,7 @@
 
         <div class="container">
             <section id="que_realitzem">
-                <h2>Preguntes freqüents</h2>
+                <h2>Preguntes freqüents (FAQS)</h2>
 
                 <p>
                     <?php
