@@ -16,7 +16,7 @@
                             <a class="nav-link text-dark" href="activitats.php">Activitats</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="que_realitzem.php">Que realitzem?</a>
+                            <a class="nav-link text-dark" href="preguntes_faqs.php">Preguntes freqüents</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="contacte.php">Contacte</a>

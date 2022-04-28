@@ -25,53 +25,68 @@
                         <section>
                             <h2>Usuaris registrats a la pàgina</h2>
 
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Nom</th>
-                                        <th scope="col">Nom usuari</th>
-                                        <th scope="col">Correu electrònic</th>
-                                        <th scope="col">Localitat</th>
-                                        <th scope="col">Activitats pendents</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $sql_consultes = "SELECT * FROM usuari";
-                                        $resultat_consultes = $connexio->query($sql_consultes);
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Nom</th>
+                                            <th scope="col">Nom usuari</th>
+                                            <th scope="col">Correu electrònic</th>
+                                            <th scope="col">Localitat</th>
+                                            <th scope="col">Activitats pendents</th>
+                                            <th scope="col">Activitats realitzades</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $sql_consultes = "SELECT * FROM usuari";
+                                            $resultat_consultes = $connexio->query($sql_consultes);
 
-                                        if ($resultat_consultes->num_rows > 0) {
-                                            while($row = $resultat_consultes->fetch_assoc()) {
-                                                echo "<tr>";
-                                                    echo "<td>" . $row['id'] . "</td>";
-                                                    echo "<td>" . $row['nom'] . "</td>";
-                                                    echo "<td>" . $row['username'] . "</td>";
-                                                    echo "<td>" . $row['correu'] . "</td>";
-                                                    echo "<td>" . $row['localitat'] . "</td>";
-                                                    echo "<td>";
-                                                        $data_ara = date("Y-m-d H:i:s");
-                                                        $select_act = "SELECT * FROM activitat WHERE dia_hora >= '$data_ara' AND esta_acceptada = 1 AND id_usuari=" . $row['id'] . " ORDER BY dia_hora ASC";
-                                                        $resultatss = $connexio->query($select_act);
-                                                        if ($resultatss->num_rows > 0) {
-                                                            while($row_act = $resultatss->fetch_assoc()) {
-                                                                echo "- " . $row_act["nom"] . "<br>";
+                                            if ($resultat_consultes->num_rows > 0) {
+                                                while($row = $resultat_consultes->fetch_assoc()) {
+                                                    echo "<tr>";
+                                                        echo "<td>" . $row['id'] . "</td>";
+                                                        echo "<td>" . $row['nom'] . "</td>";
+                                                        echo "<td>" . $row['username'] . "</td>";
+                                                        echo "<td>" . $row['correu'] . "</td>";
+                                                        echo "<td>" . $row['localitat'] . "</td>";
+                                                        echo "<td>";
+                                                            $data_ara = date("Y-m-d H:i:s");
+                                                            $select_act = "SELECT * FROM activitat WHERE dia_hora >= '$data_ara' AND esta_acceptada = 1 AND id_usuari=" . $row['id'] . " ORDER BY dia_hora ASC";
+                                                            $resultatss = $connexio->query($select_act);
+                                                            if ($resultatss->num_rows > 0) {
+                                                                while($row_act = $resultatss->fetch_assoc()) {
+                                                                    echo "- " . $row_act["nom"] . "<br>";
+                                                                }
+                                                            } else {
+                                                                echo "------";
                                                             }
-                                                        } else {
-                                                            echo "------";
-                                                        }
-                                                    echo "</td>";
+                                                        echo "</td>";
+                                                        echo "<td>";
+                                                            $data_ara = date("Y-m-d H:i:s");
+                                                            $select_act = "SELECT * FROM activitat WHERE dia_hora < '$data_ara' AND esta_acceptada = 1 AND id_usuari=" . $row['id'] . " ORDER BY dia_hora ASC";
+                                                            $resultatss = $connexio->query($select_act);
+                                                            if ($resultatss->num_rows > 0) {
+                                                                while($row_act = $resultatss->fetch_assoc()) {
+                                                                    echo "- " . $row_act["nom"] . "<br>";
+                                                                }
+                                                            } else {
+                                                                echo "------";
+                                                            }
+                                                        echo "</td>";
+                                                    echo "</tr>";
+                                                }
+                                            } else {
+                                                echo "<tr>";
+                                                    echo "<td colspan='6'>No hi ha cap consulta / pregunta.</td>";
                                                 echo "</tr>";
                                             }
-                                        } else {
-                                            echo "<tr>";
-                                                echo "<td colspan='6'>No hi ha cap consulta / pregunta.</td>";
-                                            echo "</tr>";
-                                        }
-                                    ?>
+                                        ?>
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </section>
                     </div>
                 </main>

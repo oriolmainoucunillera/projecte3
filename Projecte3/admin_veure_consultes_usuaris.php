@@ -41,61 +41,63 @@
                                 }
                             ?>
 
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Usuari</th>
-                                        <th scope="col">Consulta/pregunta</th>
-                                        <th scope="col">Telèfon mòbil</th>
-                                        <th scope="col">Correu electronic</th>
-                                        <th scope="col">Dia i hora</th>
-                                        <th scope="col">Eliminar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        $sql_consultes = "SELECT * FROM formulari_consultes";
-                                        $resultat_consultes = $connexio->query($sql_consultes);
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Usuari</th>
+                                            <th scope="col">Consulta/pregunta</th>
+                                            <th scope="col">Telèfon mòbil</th>
+                                            <th scope="col">Correu electronic</th>
+                                            <th scope="col">Dia i hora</th>
+                                            <th scope="col">Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $sql_consultes = "SELECT * FROM formulari_consultes";
+                                            $resultat_consultes = $connexio->query($sql_consultes);
 
-                                        if ($resultat_consultes->num_rows > 0) {
-                                            while($row = $resultat_consultes->fetch_assoc()) {
+                                            if ($resultat_consultes->num_rows > 0) {
+                                                while($row = $resultat_consultes->fetch_assoc()) {
+                                                    echo "<tr>";
+                                                        echo "<td>" . $row['id'] . "</td>";
+
+                                                        $sql_consulta_usuari = "SELECT * FROM usuari WHERE id=" . $row['id_usuari'];
+                                                        $resultat_consulta_usuari = $connexio->query($sql_consulta_usuari);
+                                                        while($row2 = $resultat_consulta_usuari->fetch_assoc()) {
+                                                            echo "<td>" . $row2['nom'] . "</td>";
+                                                        }
+
+                                                        echo "<td>" . $row['pregunta'] . "</td>";
+                                                        echo "<td>" . $row['mobil'] . "</td>";
+
+                                                        $sql_consulta_email = "SELECT * FROM usuari WHERE id=" . $row['id_usuari'];
+                                                        $resultat_consulta_email = $connexio->query($sql_consulta_email);
+                                                        while($row3 = $resultat_consulta_email->fetch_assoc()) {
+                                                            echo "<td>" . $row3['correu'] . "</td>";
+                                                        }
+
+                                                        echo "<td>" . $row['dia_hora'] . "</td>";
+                                                        echo "<td>";
+                                                            echo "<form action='admin_veure_consultes_usuaris.php' method='post' name='eliminar_consulta'>";
+                                                                echo "<input type='hidden' name='num_id' value='" . $row["id"] . "'>";
+                                                                echo "<input type='submit' name='eliminar_consulta' value='Eliminar' class='btn btn-danger'>";
+                                                            echo "</form>";
+                                                        echo "</td>";
+                                                    echo "</tr>";
+                                                }
+                                            } else {
                                                 echo "<tr>";
-                                                    echo "<td>" . $row['id'] . "</td>";
-
-                                                    $sql_consulta_usuari = "SELECT * FROM usuari WHERE id=" . $row['id_usuari'];
-                                                    $resultat_consulta_usuari = $connexio->query($sql_consulta_usuari);
-                                                    while($row2 = $resultat_consulta_usuari->fetch_assoc()) {
-                                                        echo "<td>" . $row2['nom'] . "</td>";
-                                                    }
-
-                                                    echo "<td>" . $row['pregunta'] . "</td>";
-                                                    echo "<td>" . $row['mobil'] . "</td>";
-
-                                                    $sql_consulta_email = "SELECT * FROM usuari WHERE id=" . $row['id_usuari'];
-                                                    $resultat_consulta_email = $connexio->query($sql_consulta_email);
-                                                    while($row3 = $resultat_consulta_email->fetch_assoc()) {
-                                                        echo "<td>" . $row3['correu'] . "</td>";
-                                                    }
-
-                                                    echo "<td>" . $row['dia_hora'] . "</td>";
-                                                    echo "<td>";
-                                                        echo "<form action='admin_veure_consultes_usuaris.php' method='post' name='eliminar_consulta'>";
-                                                            echo "<input type='hidden' name='num_id' value='" . $row["id"] . "'>";
-                                                            echo "<input type='submit' name='eliminar_consulta' value='Eliminar' class='btn btn-danger'>";
-                                                        echo "</form>";
-                                                    echo "</td>";
+                                                    echo "<td colspan='6'>No hi ha cap consulta / pregunta.</td>";
                                                 echo "</tr>";
                                             }
-                                        } else {
-                                            echo "<tr>";
-                                                echo "<td colspan='6'>No hi ha cap consulta / pregunta.</td>";
-                                            echo "</tr>";
-                                        }
-                                    ?>
+                                        ?>
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </section>
                     </div>
                 </main>

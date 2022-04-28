@@ -71,15 +71,12 @@
                                                                     echo $row["ubicacio"] . ".";
                                                                 ?>
                                                             </p>
-
                                                             <p class="card-text">
                                                                 Persones que has apuntat:
                                                                 <?php
                                                                     echo $row_participants_apuntats["numero_participants"] . ".";
                                                                 ?>
                                                             </p>
-
-
                                                             <p class="card-text">
                                                                 Dia i hora:
                                                                 <?php
@@ -96,7 +93,6 @@
                                                                     }
                                                                 ?>
                                                             </p>
-
                                                             <?php
                                                                 $data_ara = date("Y-m-d H:i:s");
 
@@ -114,15 +110,12 @@
                                                                     <?php
                                                                 }
                                                             ?>
-
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <?php
                                             }
                                         }
-
-                                        // ---------------------//
                                     }
                                 } else {
                                     ?>
@@ -133,7 +126,6 @@
                                 }
                             ?>
                         </div>
-
                     </div>
                 </main>
             <?php

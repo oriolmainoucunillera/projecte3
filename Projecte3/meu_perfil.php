@@ -28,6 +28,7 @@
                                     <a href="admin_veure_consultes_usuaris.php" class="btn btn-outline-primary">Consultes usuaris</a>
                                     <a href="admin_acceptar_activitats.php" class="btn btn-outline-success">Acceptar activitats</a>
                                     <a href="admin_tots_usuaris_registrats.php" class="btn btn-outline-info">Usuaris registrats</a>
+                                    <a href="admin_preguntes_frequents.php" class="btn btn-outline-secondary">Preguntes freqüents</a>
                                 <?php
                             }
                         ?>

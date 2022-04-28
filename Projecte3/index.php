@@ -44,7 +44,7 @@
 
         <div class="container">
             <section id="qui_som">
-                <h2>Qui som?</h2>
+                <h2>Qui som i que realitzem?</h2>
 
                 <?php
                     $qui_som = "SELECT * FROM qui_som";
