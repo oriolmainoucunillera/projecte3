@@ -34,10 +34,10 @@
                     <img src="imatges/portada/imatge2.jpg" class="d-block w-100" alt="Activitat 2">
                 </div>
                 <div class="carousel-item">
-                    <img src="imatges/portada/photo2.jpg" class="d-block w-100" alt="Activitat 3">
+                    <img src="imatges/portada/imatge3.jpg" class="d-block w-100" alt="Activitat 3">
                 </div>
                 <div class="carousel-item">
-                    <img src="imatges/portada/photo3.jpg" class="d-block w-100" alt="Activitat 4">
+                    <img src="imatges/portada/imatge4.jpg" class="d-block w-100" alt="Activitat 4">
                 </div>
             </div>
         </div>
@@ -46,14 +46,15 @@
             <section id="qui_som">
                 <h2>Qui som i que realitzem?</h2>
 
-                <?php
-                    $qui_som = "SELECT * FROM qui_som";
-                    $resultats = $connexio->query($qui_som);
+                <p>
+                    A AILLED som una associació que organitza activitats per a persones amb discapacitat per a que puguin dur a terme activitats grupals.
+                    A més, cada usuari pot crear la seva pròpia activitat on cada una d'elles haurà de ser validada pels administradors de la pàgina.
+                    La finalitat d'aquestes activitats és que siguin gratuïtes (subvencionades per associacions/fundacions) o bé de preus molt reduïts.
+                </p>
 
-                    while($row = $resultats->fetch_assoc()) {
-                        echo "<p style='font-size: 18px'>" . $row["text"] . "</p>";
-                    }
-                ?>
+                <p>
+                    Crea, apuntat i participa. T'esperem a AILLED!
+                </p>
             </section>
 
             <hr>

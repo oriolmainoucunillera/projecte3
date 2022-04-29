@@ -46,33 +46,34 @@
                 <?php
                     $id_activitat_actual = $_GET['id'];
 
-                    $sql = "SELECT * FROM activitat WHERE id=" . $id_activitat_actual;
-                    $result = $connexio->query($sql);
+                    if ($id_activitat_actual != null) {
+                        $sql = "SELECT * FROM activitat WHERE id=" . $id_activitat_actual;
+                        $result = $connexio->query($sql);
 
-                    if ($result->num_rows > 0) {
-                        while($row = $result->fetch_assoc()) {
-                            ?>
-                                <div class="card mb-3">
-                                    <img class="card-img-top" src="imatges/activitats/<?php echo $row['imatge'] ?>" title="<?php echo $row['nom'] ?>" alt="<?php echo $row['nom'] ?>" height="400" >
-                                    <div class="card-body">
-                                        <h3 class="card-title"><?php echo $row['nom'] ?></h3>
-                                        <p class="card-text">Ubicació de quedada: <?php echo $row['ubicacio'] ?></p>
-                                        <p class="card-text">Descripció de l'activitat: <?php echo $row['descripcio'] ?></p>
-                                        <p class="card-text">Duració: <?php echo $row['duracio'] ?> hores</p>
-                                        <p class="card-text">Nombre de participants: <?php echo $row['numero_participants'] ?></p>
-                                        <p class="card-text">Participants disponibles: <?php echo $row['participants_disponibles'] ?></p>
-                                        <p class="card-text">Activitat dirigida a: <?php echo $row['discapacitat_dirigida'] ?></p>
-                                        <p class="card-text">Dia i hora: <?php echo $row['dia_hora'] ?></p>
-                                        <p class="card-text">Preu:
-                                            <?php
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                ?>
+                                    <div class="card mb-3">
+                                        <img class="card-img-top" src="imatges/activitats/<?php echo $row['imatge'] ?>" title="<?php echo $row['nom'] ?>" alt="<?php echo $row['nom'] ?>" height="400" >
+                                        <div class="card-body">
+                                            <h3 class="card-title"><?php echo $row['nom'] ?></h3>
+                                            <p class="card-text">Ubicació de quedada: <?php echo $row['ubicacio'] ?></p>
+                                            <p class="card-text">Descripció de l'activitat: <?php echo $row['descripcio'] ?></p>
+                                            <p class="card-text">Duració: <?php echo $row['duracio'] ?> hores</p>
+                                            <p class="card-text">Nombre de participants: <?php echo $row['numero_participants'] ?></p>
+                                            <p class="card-text">Participants disponibles: <?php echo $row['participants_disponibles'] ?></p>
+                                            <p class="card-text">Activitat dirigida a: <?php echo $row['discapacitat_dirigida'] ?></p>
+                                            <p class="card-text">Dia i hora: <?php echo $row['dia_hora'] ?></p>
+                                            <p class="card-text">Preu:
+                                                <?php
                                                 if ($row['preu'] == 0) {
                                                     echo "Activitat totalment gratuïta";
                                                 } else {
                                                     echo $row['preu'] . "€";
                                                 }
-                                            ?>
-                                        </p>
-                                        <?php
+                                                ?>
+                                            </p>
+                                            <?php
                                             $data_ara = date("Y-m-d H:i:s");
 
                                             if ($row['dia_hora'] >= $data_ara) {
@@ -104,17 +105,23 @@
                                                     </h5>
                                                 <?php
                                             }
-
-
                                         ?>
                                     </div>
+                                </div>
+                                <?php
+                            }
+                        } else {
+                            ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Cap activitat disponible amb aquesta ID.</p>
+                                    <a href="index.php" class="btn btn-primary">Tornar a l'inici</a>
                                 </div>
                             <?php
                         }
                     } else {
                         ?>
                             <div class="alert alert-danger" role="alert">
-                                <p>Cap activitat amb aquesta ID.</p>
+                                <p>Introdueix una activitat disponible.</p>
                                 <a href="index.php" class="btn btn-primary">Tornar a l'inici</a>
                             </div>
                         <?php

@@ -84,7 +84,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">ID</th>
-                                            <th scope="col">Usuari</th>
+                                            <th scope="col">Usuari pregunta</th>
                                             <th scope="col">Titol</th>
                                             <th scope="col">Text</th>
                                             <th scope="col">Eliminar</th>
