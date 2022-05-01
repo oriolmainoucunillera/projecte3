@@ -60,7 +60,7 @@
             <hr>
 
             <section id="activitats">
-                <h2>Últimes activitats creades</h2>
+                <h2>Les properes activitats</h2>
 
                 <div class="row">
                     <?php

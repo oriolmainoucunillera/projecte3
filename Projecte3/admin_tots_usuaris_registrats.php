@@ -34,8 +34,8 @@
                                             <th scope="col">Nom usuari</th>
                                             <th scope="col">Correu electrònic</th>
                                             <th scope="col">Localitat</th>
-                                            <th scope="col">Activitats pendents</th>
-                                            <th scope="col">Activitats realitzades</th>
+                                            <th scope="col">Activitats pendents creades</th>
+                                            <th scope="col">Activitats ja fetes creades</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -84,6 +84,69 @@
                                             }
                                         ?>
 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <hr>
+
+                        <section>
+                            <h4>A quines activitats està apuntat cada usuari</h4>
+
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Nom de l'activitat</th>
+                                            <th scope="col">Nom d'usuari</th>
+                                            <th scope="col">Participants apuntats</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                            $sql_consultes = "SELECT * FROM participants_apuntats";
+                                            $resultat_consultes = $connexio->query($sql_consultes);
+
+                                            if ($resultat_consultes->num_rows > 0) {
+                                                while($row_consultes = $resultat_consultes->fetch_assoc()) {
+                                                    echo "<tr>";
+                                                        echo "<td>" . $row_consultes['id'] . "</td>";
+                                                        echo "<td>";
+                                                            $sql = "SELECT nom FROM activitat WHERE id =" . $row_consultes['id_activitat'];
+                                                            $result = $connexio->query($sql);
+                                                            while($row = $result->fetch_assoc()) {
+                                                                echo $row["nom"];
+                                                            }
+                                                        echo "</td>";
+                                                        echo "<td>";
+                                                            $sql = "SELECT nom FROM usuari WHERE id =" . $row_consultes['id_usuari'];
+                                                            $result = $connexio->query($sql);
+                                                            while($row = $result->fetch_assoc()) {
+                                                                echo $row["nom"];
+                                                            }
+                                                        echo "</td>";
+                                                        echo "<td>";
+                                                            $sql = "SELECT numero_participants FROM participants_apuntats WHERE id =" . $row_consultes['id'];
+                                                            $result = $connexio->query($sql);
+                                                            while($row = $result->fetch_assoc()) {
+                                                                if ($row["numero_participants"] > 1) {
+                                                                    echo $row["numero_participants"] . " persones";
+                                                                } else {
+                                                                    echo $row["numero_participants"] . " persona";
+                                                                }
+                                                            }
+                                                        echo "</td>";
+                                                    echo "</tr>";
+                                                }
+                                            } else {
+                                                echo "<tr>";
+                                                    echo "<td colspan='4'>No hi ha cap registre.</td>";
+                                                echo "</tr>";
+                                            }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -19,7 +19,7 @@ nav a#iniciarsessio {
 }
 
 main div#carruselImatges img {
-    height: 500px;
+    height: 550px;
 }
 
 main div.container section,
@@ -81,7 +81,46 @@ footer {
     }
 }
 
-/* responsive mapa de Google */
+/* RESPONSIVE PART IMATGES INDEX */
+
+@media screen and (max-width: 715px) {
+    main div#carruselImatges img {
+        height: 500px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    main div#carruselImatges img {
+        height: 450px;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    main div#carruselImatges img {
+        height: 375px;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    main div#carruselImatges img {
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    main div#carruselImatges img {
+        height: 275px;
+    }
+}
+
+@media screen and (max-width: 260px) {
+    main div#carruselImatges img {
+        height: 250px;
+    }
+}
+
+/* RESPONSIVE UBICACIÓ MAPA DE GOOGLE */
+
 @media screen and (max-width: 570px) {
     div#contacte_empresa iframe {
         width: 400px;

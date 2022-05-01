@@ -43,113 +43,115 @@
                     </div>
                 </form>
 
-                <?php
-                    if (isset($_POST["submit_dates_buscar"])) {
-                        $dates = $_POST["dates_buscar"];
+                <div class="row">
+                    <?php
+                        if (isset($_POST["submit_dates_buscar"])) {
+                            $dates = $_POST["dates_buscar"];
 
-                        $sql_dates_buscar = "SELECT * FROM activitat WHERE dia_hora BETWEEN '$dates 00:00:00' AND '$dates 23:59:59' AND esta_acceptada = 1 AND participants_disponibles > 0 ORDER BY dia_hora ASC";
-                        $result_dates_buscar = $connexio->query($sql_dates_buscar);
+                            $sql_dates_buscar = "SELECT * FROM activitat WHERE dia_hora BETWEEN '$dates 00:00:00' AND '$dates 23:59:59' AND esta_acceptada = 1 AND participants_disponibles > 0 ORDER BY dia_hora ASC";
+                            $result_dates_buscar = $connexio->query($sql_dates_buscar);
 
-                        if ($result_dates_buscar->num_rows > 0) {
-                            while($row_dates_buscar = $result_dates_buscar->fetch_assoc()) {
-                                ?>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="card">
-                                        <?php
-                                            echo "<img src='imatges/activitats/". $row_dates_buscar["imatge"] ."' alt='". $row_dates_buscar["id"] ."' class='card-img-top' height='250'>";
-                                        ?>
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                <?php
-                                                    echo $row_dates_buscar["nom"];
-                                                ?>
-                                            </h5>
-                                            <p class="card-text">
-                                                <?php
-                                                    echo $row_dates_buscar["descripcio"];
-                                                ?>
-                                            </p>
-                                            <p class="card-text">
-                                                Creada per:
-                                                <?php
-                                                    $sql_usuari = "SELECT nom FROM usuari WHERE id=" . $row_dates_buscar["id_usuari"];
-                                                    $resultat_usuari = $connexio->query($sql_usuari);
-
-                                                    if ($resultat_usuari->num_rows > 0) {
-                                                        while($row_usuari = $resultat_usuari->fetch_assoc()) {
-                                                            echo $row_usuari["nom"] . ".";
-                                                        }
-                                                    } else {
-                                                        echo "Usuari desconegut.";
-                                                    }
-                                                ?>
-                                            </p>
-                                            <p class="card-text">
-                                                Ubicació:
-                                                <?php
-                                                echo $row_dates_buscar["ubicacio"] . ".";
-                                                ?>
-                                            </p>
-                                            <p class="card-text">
-                                                Participants en total:
-                                                <?php
-                                                    echo $row_dates_buscar["numero_participants"] . ".";
-                                                ?>
-                                            </p>
-                                            <p class="card-text">
-                                                Places disponibles:
-                                                <?php
-                                                    echo $row_dates_buscar["participants_disponibles"] . ".";
-                                                ?>
-                                            </p>
-                                            <p class="card-text">
-                                                Activitat dirigida:
-                                                <?php
-                                                    echo $row_dates_buscar["discapacitat_dirigida"] . ".";
-                                                ?>
-                                            </p>
-                                            <p class="card-text">
-                                                Dia i hora:
-                                                <?php
-                                                    echo $row_dates_buscar["dia_hora"] . ".";
-                                                ?>
-                                            </p>
-                                            <p class="card-text">
-                                                Preu:
-                                                <?php
-                                                    if($row_dates_buscar["preu"] == 0) {
-                                                        echo "Activitat gratuïta o subvencionada.";
-                                                    } else {
-                                                        echo $row_dates_buscar["preu"] . "€.";
-                                                    }
-                                                ?>
-                                            </p>
-                                            <div class="progress">
-                                                <?php
-                                                    $barra_progres = ($row_dates_buscar["participants_disponibles"] / $row_dates_buscar["numero_participants"]) * 100;
-                                                    echo "<div class='progress-bar bg-success' role='progressbar' style='width: $barra_progres%' aria-valuenow='$barra_progres' aria-valuemin='0' aria-valuemax='100'></div>";
-                                                ?>
-                                            </div>
+                            if ($result_dates_buscar->num_rows > 0) {
+                                while($row_dates_buscar = $result_dates_buscar->fetch_assoc()) {
+                                    ?>
+                                    <div class="col-lg-4 mb-4">
+                                        <div class="card">
                                             <?php
-                                                echo "<p class='text-center text-muted'>" . round($barra_progres) . "% disponible.";
+                                                echo "<img src='imatges/activitats/". $row_dates_buscar["imatge"] ."' alt='". $row_dates_buscar["id"] ."' class='card-img-top' height='250'>";
                                             ?>
-                                            <div class="veuremes">
-                                                <a href="detalls_activitat.php?id=<?php echo $row_dates_buscar["id"]?>" class="btn btn-success">Veure més</a>
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <?php
+                                                        echo $row_dates_buscar["nom"];
+                                                    ?>
+                                                </h5>
+                                                <p class="card-text">
+                                                    <?php
+                                                        echo $row_dates_buscar["descripcio"];
+                                                    ?>
+                                                </p>
+                                                <p class="card-text">
+                                                    Creada per:
+                                                    <?php
+                                                        $sql_usuari = "SELECT nom FROM usuari WHERE id=" . $row_dates_buscar["id_usuari"];
+                                                        $resultat_usuari = $connexio->query($sql_usuari);
+
+                                                        if ($resultat_usuari->num_rows > 0) {
+                                                            while($row_usuari = $resultat_usuari->fetch_assoc()) {
+                                                                echo $row_usuari["nom"] . ".";
+                                                            }
+                                                        } else {
+                                                            echo "Usuari desconegut.";
+                                                        }
+                                                    ?>
+                                                </p>
+                                                <p class="card-text">
+                                                    Ubicació:
+                                                    <?php
+                                                    echo $row_dates_buscar["ubicacio"] . ".";
+                                                    ?>
+                                                </p>
+                                                <p class="card-text">
+                                                    Participants en total:
+                                                    <?php
+                                                        echo $row_dates_buscar["numero_participants"] . ".";
+                                                    ?>
+                                                </p>
+                                                <p class="card-text">
+                                                    Places disponibles:
+                                                    <?php
+                                                        echo $row_dates_buscar["participants_disponibles"] . ".";
+                                                    ?>
+                                                </p>
+                                                <p class="card-text">
+                                                    Activitat dirigida:
+                                                    <?php
+                                                        echo $row_dates_buscar["discapacitat_dirigida"] . ".";
+                                                    ?>
+                                                </p>
+                                                <p class="card-text">
+                                                    Dia i hora:
+                                                    <?php
+                                                        echo $row_dates_buscar["dia_hora"] . ".";
+                                                    ?>
+                                                </p>
+                                                <p class="card-text">
+                                                    Preu:
+                                                    <?php
+                                                        if($row_dates_buscar["preu"] == 0) {
+                                                            echo "Activitat gratuïta o subvencionada.";
+                                                        } else {
+                                                            echo $row_dates_buscar["preu"] . "€.";
+                                                        }
+                                                    ?>
+                                                </p>
+                                                <div class="progress">
+                                                    <?php
+                                                        $barra_progres = ($row_dates_buscar["participants_disponibles"] / $row_dates_buscar["numero_participants"]) * 100;
+                                                        echo "<div class='progress-bar bg-success' role='progressbar' style='width: $barra_progres%' aria-valuenow='$barra_progres' aria-valuemin='0' aria-valuemax='100'></div>";
+                                                    ?>
+                                                </div>
+                                                <?php
+                                                    echo "<p class='text-center text-muted'>" . round($barra_progres) . "% disponible.";
+                                                ?>
+                                                <div class="veuremes">
+                                                    <a href="detalls_activitat.php?id=<?php echo $row_dates_buscar["id"]?>" class="btn btn-success">Veure més</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <?php
+                                }
+                            } else {
+                                ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <h4 class="alert-heading">Cap activitat trobada amb aquesta data.</h4>
+                                    </div>
                                 <?php
                             }
-                        } else {
-                            ?>
-                                <div class="alert alert-danger" role="alert">
-                                    <h4 class="alert-heading">Cap activitat trobada amb aquesta data.</h4>
-                                </div>
-                            <?php
                         }
-                    }
-                ?>
+                    ?>
+                </div>
             </section>
 
             <hr>
