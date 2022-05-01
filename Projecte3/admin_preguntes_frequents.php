@@ -55,7 +55,7 @@
                                         <textarea name="resposta" id="text" rows="3" class="form-control" required></textarea>
                                     </div>
                                     <div class="pt-2">
-                                        <input type="submit" class="btn btn-primary" name="enviar_faqs" value="Crear">
+                                        <input type="submit" class="btn btn-success" name="enviar_faqs" value="Crear">
                                     </div>
                                 </form>
                             </div>

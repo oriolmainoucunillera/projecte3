@@ -57,6 +57,21 @@
                                         <img class="card-img-top" src="imatges/activitats/<?php echo $row['imatge'] ?>" title="<?php echo $row['nom'] ?>" alt="<?php echo $row['nom'] ?>" height="400" >
                                         <div class="card-body">
                                             <h3 class="card-title"><?php echo $row['nom'] ?></h3>
+                                            <p class="card-text">
+                                                Creada per:
+                                                <?php
+                                                    $sql_usuari = "SELECT nom FROM usuari WHERE id=" . $row["id_usuari"];
+                                                    $resultat_usuari = $connexio->query($sql_usuari);
+
+                                                    if ($resultat_usuari->num_rows > 0) {
+                                                        while($row_usuari = $resultat_usuari->fetch_assoc()) {
+                                                            echo $row_usuari["nom"] . ".";
+                                                        }
+                                                    } else {
+                                                        echo "Usuari desconegut.";
+                                                    }
+                                                ?>
+                                            </p>
                                             <p class="card-text">Ubicació de quedada: <?php echo $row['ubicacio'] ?></p>
                                             <p class="card-text">Descripció de l'activitat: <?php echo $row['descripcio'] ?></p>
                                             <p class="card-text">Duració: <?php echo $row['duracio'] ?> hores</p>

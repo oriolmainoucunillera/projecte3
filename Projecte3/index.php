@@ -47,9 +47,9 @@
                 <h2>Qui som i que realitzem?</h2>
 
                 <p>
-                    A AILLED som una associació que organitza activitats per a persones amb discapacitat per a que puguin dur a terme activitats grupals.
-                    A més, cada usuari pot crear la seva pròpia activitat on cada una d'elles haurà de ser validada pels administradors de la pàgina.
-                    La finalitat d'aquestes activitats és que siguin gratuïtes (subvencionades per associacions/fundacions) o bé de preus molt reduïts.
+                    AILLED som una associació que organitza activitats culturals i esportives per a persones amb discapacitat per a que puguin dur a terme activitats grupals.
+                    A més, cada usuari pot crear la seva pròpia activitat sent cada una d'elles validada pels administradors de la pàgina.
+                    Es busca que aquestes activitats lúdiques siguin sempre gratuïtes (subvencionades per associacions/fundacions) o bé de preus molt reduïts pels seus beneficiaris.
                 </p>
 
                 <p>
@@ -117,7 +117,7 @@
                                                     ?>
                                                 </p>
                                                 <p class="card-text">
-                                                    Discapacitat dirigida:
+                                                    Activitat dirigida:
                                                     <?php
                                                         echo $row["discapacitat_dirigida"] . ".";
                                                     ?>

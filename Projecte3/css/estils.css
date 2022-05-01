@@ -14,7 +14,7 @@ nav a span {
 
 nav a#iniciarsessio {
     margin: 0 5px;
-    background: #1ABC9C;
+    background: #157347;
     color: white;
 }
 
@@ -62,6 +62,12 @@ main div.container section#activitats input#boto_buscar_data {
     margin: 5px 0;
 }
 
+div#contacte_empresa iframe {
+    width: 450px;
+    height: 250px;
+    border: 0;
+}
+
 footer {
     background-color: #1ABC9C;
 }
@@ -72,5 +78,55 @@ footer {
     nav a span {
         font-size: 20px;
         letter-spacing: 2px;
+    }
+}
+
+/* responsive mapa de Google */
+@media screen and (max-width: 570px) {
+    div#contacte_empresa iframe {
+        width: 400px;
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    div#contacte_empresa iframe {
+        width: 350px;
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 465px) {
+    div#contacte_empresa iframe {
+        width: 300px;
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 405px) {
+    div#contacte_empresa iframe {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 355px) {
+    div#contacte_empresa iframe {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 315px) {
+    div#contacte_empresa iframe {
+        width: 150px;
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 250px) {
+    div#contacte_empresa iframe {
+        width: 100px;
+        height: 150px;
     }
 }

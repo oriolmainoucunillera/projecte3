@@ -151,7 +151,7 @@
                                                 </label>
 
                                                 <div class="col-md-6">
-                                                    <input id="dia_hora" type="datetime-local" class="form-control" name="dia_hora_activitat" required>
+                                                    <input id="dia_hora" type="datetime-local" class="form-control" name="dia_hora_activitat" required min=<?php $avui = date("Y-m-d"); echo $avui; ?>>
                                                 </div>
                                             </div>
 

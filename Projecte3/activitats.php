@@ -35,7 +35,7 @@
                     <div class="form-group row">
                         <label for="dates" class="col-sm-2 col-form-label">Introdueix una data:</label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" id="dates" name="dates_buscar" required min=<?php $avui = date("Y-m-d"); echo $avui; ?>>
+                            <input type="date" class="form-control" id="dates" name="dates_buscar" required>
                         </div>
                     </div>
                     <div class="form-group py-3">
@@ -103,7 +103,7 @@
                                                 ?>
                                             </p>
                                             <p class="card-text">
-                                                Discapacitat dirigida:
+                                                Activitat dirigida:
                                                 <?php
                                                     echo $row_dates_buscar["discapacitat_dirigida"] . ".";
                                                 ?>
@@ -217,7 +217,7 @@
                                                     ?>
                                                 </p>
                                                 <p class="card-text">
-                                                    Discapacitat dirigida:
+                                                    Activitat dirigida:
                                                     <?php
                                                         echo $row["discapacitat_dirigida"] . ".";
                                                     ?>
