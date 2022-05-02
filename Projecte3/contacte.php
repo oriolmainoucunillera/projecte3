@@ -35,13 +35,15 @@
                                     $mobil = $_POST["mobil"];
                                     $id_usuari = $_SESSION['id_usuari_sessio'];
                                     $dia_hora = date("Y-m-d H:i:s");
+
+                                    // Creació de la consulta
                                     $consulta = "INSERT INTO formulari_consultes (id_usuari, pregunta, mobil, dia_hora) VALUES ('$id_usuari', '$consulta', '$mobil', '$dia_hora')";
 
-                                    if ($connexio->query($consulta) === TRUE) {
+                                    if ($connexio->query($consulta) === TRUE) { // si s'ha fet l'insert correctament fa aquesta condició
                                         echo "<div class='alert alert-success' role='alert'>Registre de la consulta feta correctament. Ens posarem en contacte.</div>";
                                     } else {
+                                        // Si no s'ha fet correctament fa aquesta condició
                                         echo "<div class='alert alert-danger'  role='alert'>Error al fer el registre de la consulta.</div>";
-
                                     }
                                 }
                             ?>
@@ -68,10 +70,12 @@
                                     <div class="col-md-8 offset-md-4">
                                         <?php
                                             if(isset($_SESSION['id_usuari_sessio'])) {
+                                                // Si s'ha iniciat sessió es mostrarà aquest "submit"
                                                 ?>
                                                     <button type="submit" name="enviar_consulta" class="btn btn-success">Enviar</button>
                                                 <?php
                                             } else {
+                                                // Si no s'ha iniciat sessió es mostrarà aquest missatge
                                                 echo "<p class='text-muted'>Inicia sessió per registrar consultes.</p>";
                                             }
                                         ?>

@@ -10,6 +10,7 @@
         die("ERROR: " . $connexio->connect_error);
     }
 
+    // Expirar la sessió
     $expireAfter = 15;
 
     if (isset($_SESSION['last_action'])) {

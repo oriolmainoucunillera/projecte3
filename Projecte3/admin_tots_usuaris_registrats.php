@@ -18,7 +18,7 @@
         ?>
     </nav>
     <?php
-        if ($_SESSION['es_admin_usuari_sessio'] == 1) {
+        if ($_SESSION['es_admin_usuari_sessio'] == 1) { // si l'usuari és administrador fa aquesta condició
             ?>
                 <main>
                     <div class="container">
@@ -40,7 +40,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $sql_consultes = "SELECT * FROM usuari";
+                                            $sql_consultes = "SELECT * FROM usuari"; // seleccionem tot de la taula usuari
                                             $resultat_consultes = $connexio->query($sql_consultes);
 
                                             if ($resultat_consultes->num_rows > 0) {
@@ -52,11 +52,13 @@
                                                         echo "<td>" . $row['correu'] . "</td>";
                                                         echo "<td>" . $row['localitat'] . "</td>";
                                                         echo "<td>";
+                                                            // activitats pendents per realitzar creades per aquest usuari
                                                             $data_ara = date("Y-m-d H:i:s");
                                                             $select_act = "SELECT * FROM activitat WHERE dia_hora >= '$data_ara' AND esta_acceptada = 1 AND id_usuari=" . $row['id'] . " ORDER BY dia_hora ASC";
                                                             $resultatss = $connexio->query($select_act);
                                                             if ($resultatss->num_rows > 0) {
                                                                 while($row_act = $resultatss->fetch_assoc()) {
+                                                                    // nom de l'activitat pendent per realitzar
                                                                     echo "- " . $row_act["nom"] . "<br>";
                                                                 }
                                                             } else {
@@ -64,11 +66,13 @@
                                                             }
                                                         echo "</td>";
                                                         echo "<td>";
+                                                            // activitats ja realitzades creades per aquest usuari
                                                             $data_ara = date("Y-m-d H:i:s");
                                                             $select_act = "SELECT * FROM activitat WHERE dia_hora < '$data_ara' AND esta_acceptada = 1 AND id_usuari=" . $row['id'] . " ORDER BY dia_hora ASC";
                                                             $resultatss = $connexio->query($select_act);
                                                             if ($resultatss->num_rows > 0) {
                                                                 while($row_act = $resultatss->fetch_assoc()) {
+                                                                    // nom de l'activitat ja realitzada
                                                                     echo "- " . $row_act["nom"] . "<br>";
                                                                 }
                                                             } else {
@@ -79,6 +83,7 @@
                                                 }
                                             } else {
                                                 echo "<tr>";
+                                                    // Si no existeix cap usuari fa aquesta condició
                                                     echo "<td colspan='6'>No hi ha cap consulta / pregunta.</td>";
                                                 echo "</tr>";
                                             }
@@ -154,7 +159,7 @@
                     </div>
                 </main>
             <?php
-        } else {
+        } else { // si no és administrador fa aquesta condició
             header("LOCATION: index.php");
         }
     ?>

@@ -29,23 +29,24 @@
                         </div>
 
                         <div class="card-body">
-
                             <?php
+                                // Inicio sessió per PDO
                                 if (isset($_POST['iniciar_sessio'])) {
-                                    $email = htmlentities(addslashes($_POST['email']));
-                                    $password = htmlentities(addslashes($_POST['password']));
+                                    $email = htmlentities(addslashes($_POST['email'])); // email posat al form
+                                    $password = htmlentities(addslashes($_POST['password'])); // contrasenya posada al form
                                     $contador = 0;
 
                                     $connexio_PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                                    $sql = "SELECT * FROM usuari WHERE correu=:email";
+                                    $sql = "SELECT * FROM usuari WHERE correu=:email"; // si existeix aquest mail a la BBDD
                                     $resultat_inici_sessio = $connexio_PDO->prepare($sql);
                                     $resultat_inici_sessio->execute(array(":email" => $email));
 
                                     while ($registre = $resultat_inici_sessio->fetch(PDO::FETCH_ASSOC)) {
-                                        if (password_verify($password, $registre['contrasenya'])) {
+                                        if (password_verify($password, $registre['contrasenya'])) { // verifiquem la contrsenya si és correcte
                                             $contador++;
 
+                                            // Obrim la sessió i els hi dono dades
                                             $_SESSION['id_usuari_sessio'] = $registre['id'];
                                             $_SESSION['nom_usuari_sessio'] = $registre['nom'];
                                             $_SESSION['username_usuari_sessio'] = $registre['username'];
@@ -56,14 +57,13 @@
                                         }
                                     }
 
-                                    if ($contador > 0) {
+                                    if ($contador > 0) { // si contador és 0 envio a l'usuari a index.php
                                         header ("Location: index.php");
-                                    } else {
+                                    } else { // si hi ha un error li mostro el missatge següent
                                         echo "<div class='alert alert-danger' role='alert'>Error. Comprova que has escrit bé el correu i la contrasenya.</div>";
 
                                     }
                                 }
-//                            echo $_SESSION['nom_usuari_sessio'];
                             ?>
 
                             <form method="POST" action="iniciar_sessio.php">

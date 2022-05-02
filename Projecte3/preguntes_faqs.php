@@ -19,14 +19,12 @@
     </nav>
 
     <main>
-
         <div class="container">
             <section id="que_realitzem">
                 <h2>Preguntes freqüents (FAQS)</h2>
-
                 <p>
                     <?php
-                        $descripcio = "SELECT * FROM faqs";
+                        $descripcio = "SELECT * FROM faqs"; // seleccionem tota la taula de faqs
                         $resultat_descripcio = $connexio->query($descripcio);
 
                         while($row = $resultat_descripcio->fetch_assoc()) {
@@ -42,7 +40,6 @@
                     ?>
                 </p>
             </section>
-
         </div>
     </main>
 

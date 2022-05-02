@@ -31,6 +31,7 @@
                         <div class="card-body">
                             <?php
                                 if (isset($_POST['registrar'])) {
+                                    // Dades posades per l'usuari al formulari
                                     $nom = $_POST['nom'];
                                     $email = $_POST['email'];
                                     $username = $_POST['username'];
@@ -38,16 +39,19 @@
                                     $password = $_POST['password'];
                                     $password2 = $_POST['password2'];
 
+                                    // Buscar si username i email posat per l'usuari existeix
                                     $sql = "SELECT * FROM usuari WHERE username = '$username' OR correu = '$email'";
                                     $result = $connexio->query($sql);
 
-                                    if ($result->num_rows == 0) {
+                                    if ($result->num_rows == 0) { // Si no existeix fa aquesta condició
+                                        // Xifrar la contrasenya
                                         $contrasenya_xifrada = password_hash($password, PASSWORD_DEFAULT, array("cost"=>12));
 
                                         $connexio_PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                         $connexio_PDO->exec("SET CHARACTER SET utf8");
 
                                         if ($password == $password2) {
+                                            // Insert a la BBDD de les dades de l'usuari
                                             $sql_afegir_usuari = "INSERT INTO usuari (nom,username,correu,contrasenya,localitat,es_admin) VALUES (:nom,:username,:email,:contrasenya,:localitat,0)";
                                             $resultat = $connexio_PDO->prepare($sql_afegir_usuari);
                                             $resultat->execute(array(
@@ -64,7 +68,7 @@
                                             echo "<div class='alert alert-danger'  role='alert'>Error al fer el registre. Comprova les teves dades.</div>";
                                         }
 
-                                    } else {
+                                    } else { // Si username / email existeix fa aquesta altre condició
                                         echo "<div class='alert alert-danger' role='alert'>Nom d'usuari i/o correu electrònic ja creats.</div>";
                                     }
                                 }
@@ -156,8 +160,8 @@
 
     <footer>
         <?php
-        include "codi_repetit/footer.php";
-        footer();
+            include "codi_repetit/footer.php";
+            footer();
         ?>
     </footer>
 

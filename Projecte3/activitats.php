@@ -23,6 +23,7 @@
             <section id="buscar_activitats">
                 <?php
                     if (isset($_SESSION["id_usuari_sessio"])) {
+                        // Si l'usuari ha iniciat sessió fa aquesta condició
                         ?>
                             <a href="crear_activitat.php" class="btn btn-info">Crear activitat</a>
                         <?php
@@ -45,13 +46,14 @@
 
                 <div class="row">
                     <?php
+                        // Mostrar activitats per la data posada al formulari
                         if (isset($_POST["submit_dates_buscar"])) {
                             $dates = $_POST["dates_buscar"];
 
                             $sql_dates_buscar = "SELECT * FROM activitat WHERE dia_hora BETWEEN '$dates 00:00:00' AND '$dates 23:59:59' AND esta_acceptada = 1 AND participants_disponibles > 0 ORDER BY dia_hora ASC";
                             $result_dates_buscar = $connexio->query($sql_dates_buscar);
 
-                            if ($result_dates_buscar->num_rows > 0) {
+                            if ($result_dates_buscar->num_rows > 0) { // si $sql_dates_buscar té 1 o més resultats fa aquesta condició
                                 while($row_dates_buscar = $result_dates_buscar->fetch_assoc()) {
                                     ?>
                                     <div class="col-lg-4 mb-4">
@@ -66,13 +68,9 @@
                                                     ?>
                                                 </h5>
                                                 <p class="card-text">
-                                                    <?php
-                                                        echo $row_dates_buscar["descripcio"];
-                                                    ?>
-                                                </p>
-                                                <p class="card-text">
                                                     Creada per:
                                                     <?php
+                                                        // Busquem nom de l'usuari que ha creat l'activitat
                                                         $sql_usuari = "SELECT nom FROM usuari WHERE id=" . $row_dates_buscar["id_usuari"];
                                                         $resultat_usuari = $connexio->query($sql_usuari);
 
@@ -88,7 +86,7 @@
                                                 <p class="card-text">
                                                     Ubicació:
                                                     <?php
-                                                    echo $row_dates_buscar["ubicacio"] . ".";
+                                                        echo $row_dates_buscar["ubicacio"] . ".";
                                                     ?>
                                                 </p>
                                                 <p class="card-text">
@@ -119,8 +117,10 @@
                                                     Preu:
                                                     <?php
                                                         if($row_dates_buscar["preu"] == 0) {
+                                                            // Si el preu és "0" fa aquesta condició
                                                             echo "Activitat gratuïta o subvencionada.";
                                                         } else {
+                                                            // Si no fa la condició anterior fa aquesta
                                                             echo $row_dates_buscar["preu"] . "€.";
                                                         }
                                                     ?>
@@ -180,11 +180,6 @@
                                                         echo $row["nom"];
                                                     ?>
                                                 </h5>
-                                                <p class="card-text">
-                                                    <?php
-                                                        echo $row["descripcio"];
-                                                    ?>
-                                                </p>
                                                 <p class="card-text">
                                                     Creada per:
                                                     <?php

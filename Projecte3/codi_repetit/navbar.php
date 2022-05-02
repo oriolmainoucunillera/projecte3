@@ -1,9 +1,11 @@
+<!-- MENÚ DE NAVEGACIÓ DE L'APLICACIÓ -->
+
 <?php
     function navbar() {
         ?>
             <div class="container">
                 <a class="navbar-brand" href="index.php">
-                    <span id="ailled">Ailled</span>
+                    <span id="ailled">Ailled</span> <!-- nom aplicació -->
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +28,7 @@
                     <div class="d-flex">
                         <?php
                             if (isset($_SESSION['id_usuari_sessio'])) {
+                                // Si existeix sessió fa aquesta part de la condició
                                 ?>
                                     <a href="meu_perfil.php" class="btn btn-success">Perfil</a>
 
@@ -35,11 +38,12 @@
                                 <?php
 
                                 if (isset($_POST['sortir'])) {
-                                    session_destroy();
-                                    header("LOCATION: index.php");
+                                    session_destroy(); // tanquem la sessió
+                                    header("LOCATION: index.php"); // redirigir l'usuari a index.php
                                 }
 
                             } else {
+                                // Si no hi ha sessió fa aquesta altre part de la condició
                                 echo "<a class='btn btn-outline-success' id='registrar' href='registrar.php'>Registrar-me</a>";
                                 echo "<a class='btn' href='iniciar_sessio.php' id='iniciarsessio'>Iniciar sessió</a>";
                             }

@@ -18,7 +18,7 @@
         ?>
     </nav>
     <?php
-        if ($_SESSION['es_admin_usuari_sessio'] == 1) {
+        if ($_SESSION['es_admin_usuari_sessio'] == 1) { // si és administrador fa aquesta condició
             ?>
                 <main>
                     <div class="container">
@@ -29,9 +29,9 @@
                                 if (isset($_POST["eliminar_consulta"])) {
                                     $identificador = $_POST["num_id"];
 
-                                    $update = "DELETE FROM formulari_consultes WHERE id=" . $identificador;
+                                    $update = "DELETE FROM formulari_consultes WHERE id=" . $identificador; // eliminar consulta
 
-                                    if ($connexio->query($update) === TRUE) {
+                                    if ($connexio->query($update) === TRUE) { // si s'ha eliminat correctament fa aquesta condició
                                         ?>
                                             <div class="alert alert-danger" role="alert">
                                                 Consulta eliminada.
@@ -56,7 +56,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $sql_consultes = "SELECT * FROM formulari_consultes";
+                                            $sql_consultes = "SELECT * FROM formulari_consultes"; // seleccionem tot de la taula "formulari_consultes"
                                             $resultat_consultes = $connexio->query($sql_consultes);
 
                                             if ($resultat_consultes->num_rows > 0) {
@@ -67,7 +67,7 @@
                                                         $sql_consulta_usuari = "SELECT * FROM usuari WHERE id=" . $row['id_usuari'];
                                                         $resultat_consulta_usuari = $connexio->query($sql_consulta_usuari);
                                                         while($row2 = $resultat_consulta_usuari->fetch_assoc()) {
-                                                            echo "<td>" . $row2['nom'] . "</td>";
+                                                            echo "<td>" . $row2['nom'] . "</td>"; // nom de l'usuari
                                                         }
 
                                                         echo "<td>" . $row['pregunta'] . "</td>";
@@ -76,13 +76,14 @@
                                                         $sql_consulta_email = "SELECT * FROM usuari WHERE id=" . $row['id_usuari'];
                                                         $resultat_consulta_email = $connexio->query($sql_consulta_email);
                                                         while($row3 = $resultat_consulta_email->fetch_assoc()) {
-                                                            echo "<td>" . $row3['correu'] . "</td>";
+                                                            echo "<td>" . $row3['correu'] . "</td>"; // mail de l'usuari
                                                         }
 
                                                         echo "<td>" . $row['dia_hora'] . "</td>";
                                                         echo "<td>";
+                                                            // formulari per eliminar la consulta
                                                             echo "<form action='admin_veure_consultes_usuaris.php' method='post' name='eliminar_consulta'>";
-                                                                echo "<input type='hidden' name='num_id' value='" . $row["id"] . "'>";
+                                                                echo "<input type='hidden' name='num_id' value='" . $row["id"] . "'>"; // no es mostra aquest input (està hidden)
                                                                 echo "<input type='submit' name='eliminar_consulta' value='Eliminar' class='btn btn-danger'>";
                                                             echo "</form>";
                                                         echo "</td>";
@@ -90,11 +91,11 @@
                                                 }
                                             } else {
                                                 echo "<tr>";
+                                                    // Si no hi ha cap consulta/pregunta fa aquesta condició
                                                     echo "<td colspan='6'>No hi ha cap consulta / pregunta.</td>";
                                                 echo "</tr>";
                                             }
                                         ?>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -102,7 +103,7 @@
                     </div>
                 </main>
             <?php
-        } else {
+        } else { // si no és administrador fa aquesta condició
             header("LOCATION: index.php");
         }
     ?>

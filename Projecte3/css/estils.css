@@ -7,9 +7,9 @@ nav {
 nav a span {
     color: #1ABC9C;
     font-weight: bold;
-    text-transform: uppercase;
+    text-transform: uppercase; /* transformem el text a majúscules */
     font-size: 25px;
-    letter-spacing: 2.5px;
+    letter-spacing: 2.5px; /* espai entre lletres */
 }
 
 nav a#iniciarsessio {
@@ -74,7 +74,7 @@ footer {
 
 /* PART RESPONSIVE DE LA WEB */
 
-@media screen and (max-width: 385px) {
+@media screen and (max-width: 385px) { /* quan el dispositiu arriba a 385px */
     nav a span {
         font-size: 20px;
         letter-spacing: 2px;
@@ -83,37 +83,37 @@ footer {
 
 /* RESPONSIVE PART IMATGES INDEX */
 
-@media screen and (max-width: 715px) {
+@media screen and (max-width: 715px) { /* quan el dispositiu arriba a 715px */
     main div#carruselImatges img {
         height: 500px;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) { /* quan el dispositiu arriba a 600px */
     main div#carruselImatges img {
         height: 450px;
     }
 }
 
-@media screen and (max-width: 510px) {
+@media screen and (max-width: 510px) { /* quan el dispositiu arriba a 510px */
     main div#carruselImatges img {
         height: 375px;
     }
 }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 415px) { /* quan el dispositiu arriba a 415px */
     main div#carruselImatges img {
         height: 350px;
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 320px) { /* quan el dispositiu arriba a 320px */
     main div#carruselImatges img {
         height: 275px;
     }
 }
 
-@media screen and (max-width: 260px) {
+@media screen and (max-width: 260px) { /* quan el dispositiu arriba a 260px */
     main div#carruselImatges img {
         height: 250px;
     }
@@ -121,49 +121,49 @@ footer {
 
 /* RESPONSIVE UBICACIÓ MAPA DE GOOGLE */
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 570px) { /* quan el dispositiu arriba a 570px */
     div#contacte_empresa iframe {
         width: 400px;
         height: 250px;
     }
 }
 
-@media screen and (max-width: 510px) {
+@media screen and (max-width: 510px) { /* quan el dispositiu arriba a 510px */
     div#contacte_empresa iframe {
         width: 350px;
         height: 250px;
     }
 }
 
-@media screen and (max-width: 465px) {
+@media screen and (max-width: 465px) { /* quan el dispositiu arriba a 465px */
     div#contacte_empresa iframe {
         width: 300px;
         height: 250px;
     }
 }
 
-@media screen and (max-width: 405px) {
+@media screen and (max-width: 405px) { /* quan el dispositiu arriba a 405px */
     div#contacte_empresa iframe {
         width: 250px;
         height: 250px;
     }
 }
 
-@media screen and (max-width: 355px) {
+@media screen and (max-width: 355px) { /* quan el dispositiu arriba a 355px */
     div#contacte_empresa iframe {
         width: 200px;
         height: 200px;
     }
 }
 
-@media screen and (max-width: 315px) {
+@media screen and (max-width: 315px) { /* quan el dispositiu arriba a 315px */
     div#contacte_empresa iframe {
         width: 150px;
         height: 200px;
     }
 }
 
-@media screen and (max-width: 250px) {
+@media screen and (max-width: 250px) { /* quan el dispositiu arriba a 250px */
     div#contacte_empresa iframe {
         width: 100px;
         height: 150px;

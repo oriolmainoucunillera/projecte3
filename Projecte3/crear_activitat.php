@@ -18,7 +18,7 @@
         ?>
     </nav>
     <?php
-        if(isset($_SESSION["id_usuari_sessio"])) {
+        if(isset($_SESSION["id_usuari_sessio"])) { // si s'ha iniciat sessió es mostrarà aquesta condició
             ?>
                 <main>
                     <div class="container p-5">
@@ -28,49 +28,48 @@
                                     <div class="card-header text-center">
                                         <h3>Crear activitat</h3>
                                     </div>
-
                                     <div class="card-body">
-
                                         <?php
-                                        if (isset($_POST['crear_activitats'])) {
-                                            $nom = $_POST['nom_activitat'];
-                                            $ubicacio = $_POST['ubicacio_activitat'];
-                                            $descripcio = $_POST['descripcio_activitat'];
-                                            $duracio = $_POST['duracio_activitat'];
-                                            $participants = $_POST['participants_activitat'];
-                                            $discapacitat = $_POST['discapacitat_activitat'];
-                                            $dia_hora = $_POST['dia_hora_activitat'];
-                                            $preu = $_POST['preu_activitat'];
-                                            $arxiu = $_FILES['foto_activitat']['name'];
+                                            if (isset($_POST['crear_activitats'])) {
+                                                // Dades introduïdes al formulari
+                                                $nom = $_POST['nom_activitat'];
+                                                $ubicacio = $_POST['ubicacio_activitat'];
+                                                $descripcio = $_POST['descripcio_activitat'];
+                                                $duracio = $_POST['duracio_activitat'];
+                                                $participants = $_POST['participants_activitat'];
+                                                $discapacitat = $_POST['discapacitat_activitat'];
+                                                $dia_hora = $_POST['dia_hora_activitat'];
+                                                $preu = $_POST['preu_activitat'];
+                                                $arxiu = $_FILES['foto_activitat']['name'];
 
-                                            if ($_FILES['foto_activitat']["error"] > 0) {
-                                                ?>
-                                                <div class="alert alert-danger" role="alert">
-                                                    Error a l'omplir el formulari. Prova-ho de nou.
-                                                </div>
-                                                <?php
-                                            } else {
-                                                $img_nova = rand(1,1000) . "_" . $arxiu;
-                                                move_uploaded_file($_FILES['foto_activitat']['tmp_name'], "imatges/activitats/" . $img_nova);
-
-                                                $insertar_activitat = "INSERT INTO activitat (id_usuari,nom,ubicacio,descripcio,duracio,numero_participants,participants_disponibles,discapacitat_dirigida,dia_hora,preu,imatge,esta_acceptada) VALUES ('".$_SESSION['id_usuari_sessio']."','$nom','$ubicacio','$descripcio','$duracio','$participants','$participants','$discapacitat','$dia_hora','$preu','$img_nova',0)";
-
-                                                if ($connexio->query($insertar_activitat) === TRUE) {
+                                                if ($_FILES['foto_activitat']["error"] > 0) { // si la img ens dona error
                                                     ?>
-                                                    <div class="alert alert-success" role="alert">
-                                                        Activitat afegida correctament, ara els administradors l'hauran d'acceptar.
-                                                    </div>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            Error a l'omplir el formulari. Prova-ho de nou.
+                                                        </div>
                                                     <?php
-                                                } else {
-                                                    ?>
-                                                    <div class="alert alert-danger" role="alert">
-                                                        Error a l'omplir el formulari. Prova-ho de nou.
-                                                    </div>
-                                                    <?php
-                                                            echo $connexio->error;
+                                                } else { // si no ens dona error es pujarà al directori introduit
+                                                    $img_nova = rand(1,1000) . "_" . $arxiu; // rand serveix per posar a la img un numero entre 1 i 1000 per no repetir nom a la img
+                                                    move_uploaded_file($_FILES['foto_activitat']['tmp_name'], "imatges/activitats/" . $img_nova); // lloc on pujarem la img
+
+                                                    // Insertem el nom de l'activitat a la BBDD
+                                                    $insertar_activitat = "INSERT INTO activitat (id_usuari,nom,ubicacio,descripcio,duracio,numero_participants,participants_disponibles,discapacitat_dirigida,dia_hora,preu,imatge,esta_acceptada) VALUES ('".$_SESSION['id_usuari_sessio']."','$nom','$ubicacio','$descripcio','$duracio','$participants','$participants','$discapacitat','$dia_hora','$preu','$img_nova',0)";
+
+                                                    if ($connexio->query($insertar_activitat) === TRUE) { // si s'ha fet correctament l'insert fa aquesta condició
+                                                        ?>
+                                                            <div class="alert alert-success" role="alert">
+                                                                Activitat afegida correctament, ara els administradors l'hauran d'acceptar.
+                                                            </div>
+                                                        <?php
+                                                    } else {  // si no s'ha fet correctament l'insert fa aquesta condició
+                                                        ?>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                Error a l'omplir el formulari. Prova-ho de nou.
+                                                            </div>
+                                                        <?php
+                                                    }
                                                 }
                                             }
-                                        }
                                         ?>
 
                                         <form method="POST" action="crear_activitat.php" enctype="multipart/form-data">
@@ -151,6 +150,7 @@
                                                 </label>
 
                                                 <div class="col-md-6">
+                                                    <!--No pot crear una activitat anterior a la data d'avui-->
                                                     <input id="dia_hora" type="datetime-local" class="form-control" name="dia_hora_activitat" required min=<?php $avui = date("Y-m-d"); echo $avui; ?>>
                                                 </div>
                                             </div>
@@ -190,7 +190,7 @@
                     </div>
                 </main>
             <?php
-        } else {
+        } else { // si no s'ha iniciat sessió fa aquesta condició
             header("LOCATION: index.php");
         }
     ?>

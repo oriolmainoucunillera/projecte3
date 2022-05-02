@@ -26,22 +26,27 @@
                         $participants_act_registrat = $_POST["participants_act_registrat"];
                         $id_act_registrat = $_POST["id_act_registrat"];
 
+                        // Afegim aquestes dades a la BBDD
                         $insertar_participants_apuntats  = "INSERT INTO participants_apuntats (id_activitat,id_usuari,numero_participants) VALUES ('$id_act_registrat', '" . $_SESSION['id_usuari_sessio'] . "', '$participants_act_registrat')";
+                        // Actualitzem aquestes dades a la BBDD
                         $update_participants_disponibles = "UPDATE activitat SET participants_disponibles = participants_disponibles - " . $participants_act_registrat . " WHERE id=" . $id_act_registrat;
 
+                        // Si insert i update s'ha fet correctament fa aquesta condició
                         if ($connexio->query($insertar_participants_apuntats) === TRUE && $connexio->query($update_participants_disponibles) === TRUE) {
                             ?>
                                 <div class="alert alert-success" role="alert">
                                     T'has registrat a l'activitat correctament!
                                 </div>
                             <?php
-                        } else {
-                            echo "Error: " . $sql . "<br>" . $connexio->error;
+                        } else { // Si no s'ha fet correctament fa aquesta altre condició
+                            ?>
+                                <div class="alert alert-danger" role="alert">
+                                    Error a l'apuntar-te a l'activitat. Comprova si has iniciat sessió.
+                                </div>
+                            <?php
                         }
                     }
                 ?>
-
-                <!------------>
 
                 <?php
                     $id_activitat_actual = $_GET['id'];
@@ -89,10 +94,10 @@
                                                 ?>
                                             </p>
                                             <?php
-                                            $data_ara = date("Y-m-d H:i:s");
+                                            $data_ara = date("Y-m-d H:i:s"); // data i hora d'ara mateix
 
-                                            if ($row['dia_hora'] >= $data_ara) {
-                                                if (isset($_SESSION["id_usuari_sessio"])) {
+                                            if ($row['dia_hora'] >= $data_ara) { // si dia i hora és més gran o igual que la data i hora actual fa aquesta condició
+                                                if (isset($_SESSION["id_usuari_sessio"])) { // si s'ha iniciat sessió fa aquesta condició
                                                     ?>
                                                         <form action="detalls_activitat.php?id=<?php echo $id_activitat_actual ?>" method="post" class="pt-3">
                                                             <input type="hidden" name="id_act_registrat" value="<?php echo $id_activitat_actual ?>">
@@ -106,14 +111,14 @@
                                                             </div>
                                                         </form>
                                                     <?php
-                                                } else {
+                                                } else { // si no s'ha iniciat sessió fa aquesta altre condició
                                                     ?>
                                                         <h5 class="card-text text-muted text-center">
                                                             Si vol apuntar-se a l'activitat inicia sessió.
                                                         </h5>
                                                     <?php
                                                 }
-                                            } else {
+                                            } else { // si dia i hora és més petita que la data i hora actual fa aquesta condició
                                                 ?>
                                                     <h5 class="card-text text-muted text-center">
                                                         No es pot apuntar a l'activitat. Ja ha vençut.

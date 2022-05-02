@@ -32,9 +32,9 @@
                                     $id_usuari = $_SESSION['id_usuari_sessio'];
                                     $titol = $_POST['titol'];
                                     $text = $_POST['resposta'];
-                                    $afegir = "INSERT INTO faqs (id_usuari, titol, text) VALUES ('$id_usuari', '$titol', '$text')";
+                                    $afegir = "INSERT INTO faqs (id_usuari, titol, text) VALUES ('$id_usuari', '$titol', '$text')"; // sentencia per afegir a la BBDD
 
-                                    if ($connexio->query($afegir) === TRUE) {
+                                    if ($connexio->query($afegir) === TRUE) { // si insert ha funcionat fa aquesta condició
                                         ?>
                                             <div class="alert alert-success" role="alert">
                                                 Pregunta freqüent creada.
@@ -68,9 +68,9 @@
                                 if (isset($_POST["eliminar_faqs"])) {
                                     $identificador = $_POST["num_id"];
 
-                                    $update = "DELETE FROM faqs WHERE id=" . $identificador;
+                                    $update = "DELETE FROM faqs WHERE id=" . $identificador; // sentencia per eliminar
 
-                                    if ($connexio->query($update) === TRUE) {
+                                    if ($connexio->query($update) === TRUE) { // si s'ha eliminat correctament fa aquesta condició
                                         ?>
                                             <div class="alert alert-danger" role="alert">
                                                 Consulta eliminada.
@@ -79,6 +79,7 @@
                                     }
                                 }
                             ?>
+
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
@@ -92,10 +93,11 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $sql = "SELECT * FROM faqs";
+                                            $sql = "SELECT * FROM faqs"; // seleccionem tota la taula "faqs"
                                             $result = $connexio->query($sql);
 
                                             if ($result->num_rows > 0) {
+                                                // Si la consulta conté dades fa aquesta condició
                                                 while($row = $result->fetch_assoc()) {
                                                     echo "<tr>";
                                                         echo "<td>" . $row["id"] . "</td>";
@@ -120,6 +122,7 @@
                                                     echo "</tr>";
                                                 }
                                             } else {
+                                                // Si la consulta no conté dades fa aquesta condició
                                                 echo "<tr>";
                                                     echo "<td colspan='5'>Cap resultat</td>";
                                                 echo "</tr>";

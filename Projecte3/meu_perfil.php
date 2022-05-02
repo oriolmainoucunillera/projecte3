@@ -23,7 +23,7 @@
                 <main>
                     <div class="container p-5">
                         <?php
-                            if ($_SESSION['es_admin_usuari_sessio'] == 1) {
+                            if ($_SESSION['es_admin_usuari_sessio'] == 1) { // si l'usuari és admin es mostra aquests enllaços
                                 ?>
                                     <a href="admin_tots_usuaris_registrats.php" class="btn btn-outline-primary">Usuaris registrats</a>
                                     <a href="admin_veure_consultes_usuaris.php" class="btn btn-outline-primary">Consultes usuaris</a>
@@ -40,7 +40,7 @@
                                         <h2 class="card-title text-center">El meu perfil</h2>
                                         <hr>
                                         <?php
-                                            if($_SESSION['es_admin_usuari_sessio'] == 1) {
+                                            if($_SESSION['es_admin_usuari_sessio'] == 1) { // si l'usuari és administrador es mostra aquest missatge
                                                 echo "<p class='text-muted'>(*) Ets admin de la pàgina.</p>";
                                             }
                                             echo "<h4 class='card-text'>" . $_SESSION['nom_usuari_sessio'] . "</h4> <br>";

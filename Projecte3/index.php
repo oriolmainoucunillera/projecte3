@@ -64,18 +64,20 @@
 
                 <div class="row">
                     <?php
+                        // Dia i hora d'ara mateix
                         $data_ara = date("Y-m-d H:i:s");
 
+                        // Seleccionem 6 activitats de la taula activitat quan la dia/hora és més gran que l'actual, activitat és acceptada (1), hi ha places disponibles i ordenem per dia_hora a ASC
                         $sql = "SELECT * FROM activitat WHERE dia_hora >= '$data_ara' AND esta_acceptada = 1 AND participants_disponibles > 0 ORDER BY dia_hora ASC LIMIT 6";
                         $result = $connexio->query($sql);
 
-                        if ($result->num_rows > 0) {
+                        if ($result->num_rows > 0) { // si hi ha més d'una condició del select
                             while($row = $result->fetch_assoc()) {
                                 ?>
                                     <div class="col-lg-4 mb-4">
                                         <div class="card">
                                             <?php
-                                                echo "<img src='imatges/activitats/". $row["imatge"] ."' alt='". $row["id"] ."' class='card-img-top' height='250'>";
+                                                echo "<img src='imatges/activitats/". $row["imatge"] ."' alt='". $row["nom"] ."' class='card-img-top' height='250'>";
                                             ?>
                                             <div class="card-body">
                                                 <h5 class="card-title">
@@ -131,9 +133,9 @@
                                                 <p class="card-text">
                                                     Preu:
                                                     <?php
-                                                        if($row["preu"] == 0) {
+                                                        if($row["preu"] == 0) { // si preu és 0
                                                             echo "Activitat gratuïta o subvencionada.";
-                                                        } else {
+                                                        } else { // si el preu no és 0
                                                             echo $row["preu"] . "€.";
                                                         }
                                                     ?>
@@ -148,6 +150,7 @@
                                                     echo "<p class='text-center text-muted'>" . round($barra_progres) . "% disponible.";
                                                 ?>
                                                 <div class="veuremes">
+                                                    <!-- Envio per get la id de l'activitat -->
                                                     <a href="detalls_activitat.php?id=<?php echo $row["id"]?>" class="btn btn-success">Veure més</a>
                                                 </div>
                                             </div>
@@ -156,6 +159,7 @@
                                 <?php
                             }
                         } else {
+                            // Si no existeix cap activitat
                             ?>
                                 <div class="alert alert-danger" role="alert">
                                     <h4 class="alert-heading">Cap activitat disponible!</h4>

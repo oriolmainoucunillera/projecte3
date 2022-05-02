@@ -24,8 +24,10 @@
                     <div class="container p-5">
                         <h3>Activitats on estic apuntat</h3>
                         <p>Aquí es mostren totes les activitats on t'has registrat i han estat acceptades.</p> <br>
+
                         <div class="row">
                             <?php
+                                // Seleccionat les activitats on l'usuari loguejat està inscrit
                                 $sql_participants_apuntats = "SELECT * FROM participants_apuntats WHERE id_usuari = " . $_SESSION['id_usuari_sessio'];
                                 $result_participants_apuntats = $connexio->query($sql_participants_apuntats);
 
@@ -33,6 +35,7 @@
                                     while ($row_participants_apuntats = $result_participants_apuntats->fetch_assoc()) {
                                         $id_activitats = $row_participants_apuntats["id_activitat"];
 
+                                        // Selecciono les activitats per ordre de dia i hora
                                         $sql = "SELECT * FROM activitat WHERE id = '$id_activitats' AND esta_acceptada = 1 ORDER BY dia_hora ASC";
                                         $result = $connexio->query($sql);
 
@@ -53,7 +56,7 @@
                                                             <p class="card-text">
                                                                 Creada per:
                                                                 <?php
-                                                                    $sql_usuari = "SELECT nom FROM usuari WHERE id=" . $row["id_usuari"];
+                                                                    $sql_usuari = "SELECT nom FROM usuari WHERE id=" . $row["id_usuari"]; // nom de l'usuari de l'activitat
                                                                     $resultat_usuari = $connexio->query($sql_usuari);
 
                                                                     if ($resultat_usuari->num_rows > 0) {
@@ -86,23 +89,23 @@
                                                             <p class="card-text">
                                                                 Preu:
                                                                 <?php
-                                                                    if($row["preu"] == 0) {
+                                                                    if($row["preu"] == 0) { // si costa 0 fa aquesta condició
                                                                         echo "Activitat gratuïta o subvencionada.";
-                                                                    } else {
+                                                                    } else { // si no costa 0 fa aquesta altre condició
                                                                         echo $row["preu"] . "€.";
                                                                     }
                                                                 ?>
                                                             </p>
                                                             <?php
-                                                                $data_ara = date("Y-m-d H:i:s");
+                                                                $data_ara = date("Y-m-d H:i:s"); // dia i hora actual
 
-                                                                if ($row["dia_hora"] >= $data_ara) {
+                                                                if ($row["dia_hora"] >= $data_ara) { // si dia i hora és més gran o igual que dia i hora actual
                                                                     ?>
                                                                         <div class="veuremes">
                                                                             <a href="detalls_activitat.php?id=<?php echo $row["id"]?>" class="btn btn-success">Veure més</a>
                                                                         </div>
                                                                     <?php
-                                                                } else {
+                                                                } else { // si dia i hora és més petit que dia i hora actual
                                                                     ?>
                                                                         <h3 class="card-text text-muted text-center">
                                                                             Activitat ja vençuda.
@@ -117,7 +120,7 @@
                                             }
                                         }
                                     }
-                                } else {
+                                } else { // quan no t'has registrat a cap activitat
                                     ?>
                                         <div class="alert alert-danger" role="alert">
                                             No t'has registrat a cap activitat.
