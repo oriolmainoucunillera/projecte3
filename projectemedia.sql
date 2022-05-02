@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2022 a las 17:04:34
+-- Tiempo de generación: 02-05-2022 a las 18:25:23
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -52,13 +52,13 @@ INSERT INTO `activitat` (`id`, `id_usuari`, `nom`, `ubicacio`, `descripcio`, `du
 (1, 1, 'Pujada a Montserrat', 'Montserrat', 'Pujada a Montserrat des de Manresa. La quedada és des del Pavello Nou Congost. Activitat gratuïta. Pujarem al matí i baixarem a la tarda.', 10, 100, 1, 'tothom', '2022-04-27 10:00:00', 0, 'montserrat.jpg', 1),
 (2, 2, 'Museu de xocolata', 'Barcelona', 'Visita al museu de xocolata de Barcelona. Activitat subvencionada per la Fundació de la Caixa. Adreça és Comerç, 36 Barcelona. Activitat dirigida per a tothom.', 2, 25, 25, 'tothom', '2022-04-30 00:00:00', 5, 'xocolata.jpg', 1),
 (3, 5, 'Campionats de bàsquet', 'Barcelona', 'Organitzo torneig de bàsquet de cadira de rodes. Jugarem als camps de bàsquet de l\'Espanya Indústrial. Partits de 30 minuts (15 cada part).', 5, 120, 120, 'cadira de rodes', '2022-04-29 00:00:00', 0, 'basquet.jpg', 1),
-(10, 2, 'Visita al MNAC', 'Barcelona', 'Visitarem el Museu Nacional d\'Art de Catalunya amb l\'historiador català Marc Pérez.', 12, 30, 15, 'tothom', '2022-05-05 10:45:00', 0, 'excursio.jpg', 1),
-(11, 3, 'Pujada al Tibidado', 'Cerdanyola del Vallès', 'Pujada al Tibidado des de Collserola a Cerdanyola.', 4, 25, 22, 'sindrome de down', '2022-05-08 10:00:00', 0, 'collserola.jpg', 1),
+(10, 2, 'Visita al MNAC', 'Barcelona', 'Visitarem el Museu Nacional d\'Art de Catalunya amb l\'historiador català Marc Pérez.', 12, 30, 15, 'tothom', '2022-05-05 10:00:00', 0, 'excursio.jpg', 1),
+(11, 3, 'Pujada al Tibidado', 'Cerdanyola del Vallès', 'Pujada al Tibidado des de Collserola a Cerdanyola.', 4, 25, 22, 'sindrome de down', '2022-05-18 10:00:00', 0, 'collserola.jpg', 1),
 (12, 1, 'Museu d\'història', 'Barcelona', 'Museu exposició de la Barcelona del segle XX', 1, 27, 25, 'tothom', '2022-06-14 15:30:00', 3, 'museu.jpg', 1),
 (14, 5, 'Sortida a Les Golondrines', 'Barcelona', 'Sortida amb les Golondrines des del Port de Barcelona. Visitarem el litoral català.', 3, 10, 1, 'tothom', '2022-06-07 10:30:00', 0, 'maremagum.jpg', 1),
 (15, 21, 'Torneig a la bolera', 'El Vendrell', 'Torneig de bolos amb medalles i trofeus. Es disputarà fase de grups, quarts, semifinals i la final.', 4, 32, 9, 'tothom', '2022-05-22 17:15:00', 0, 'bowling.jpg', 1),
 (16, 32, 'Excursió a Besalú', 'Besalú', 'Visita a Besalú. Coneixerem la seva història i que amaga darrere de les seves muralles.', 7, 19, 5, 'tothom', '2022-05-24 08:45:00', 2, 'besalu.jpg', 1),
-(17, 21, 'Sortida a la muntanya', 'La Molina', 'Sortirem des de plaça Catalunya de Barcelona. Agafarem els autocars i anirem a passar el dia a la muntanya. Farem diferents activitats a La Molina.', 11, 33, 22, 'tothom', '2022-05-07 06:30:00', 0, 'pirineus.jpg', 1),
+(17, 21, 'Sortida a la muntanya', 'La Molina', 'Sortirem des de plaça Catalunya de Barcelona. Agafarem els autocars i anirem a passar el dia a la muntanya. Farem diferents activitats a La Molina.', 11, 33, 22, 'tothom', '2022-05-09 06:30:00', 0, 'pirineus.jpg', 1),
 (18, 8, 'La Costa Brava', 'Cadaqués', 'Visita al poble de Cadaqués. Visitarem el poble de Salvador Dalí amb el seu museu.', 2, 7, 6, 'sindrome de down', '2022-06-20 17:00:00', 0, 'cadaques.jpg', 1),
 (19, 1, 'Curs de fotografia', 'Tortosa', 'Curs de fotografia realitzat conjuntament amb La Fundació de la Marbella de Tortosa.', 3, 15, 8, 'tothom', '2022-06-20 11:30:00', 0, 'fotos.jpg', 1),
 (20, 1, 'Roses per Sant Jordi', 'Girona', 'Venda de roses per Sant Jordi. Ajudar a recaptar diners per la Fundació Girona.', 6, 40, 38, 'tothom', '2023-04-23 08:15:00', 0, 'santjordi.jpg', 1);
@@ -245,7 +245,7 @@ ALTER TABLE `formulari_consultes`
 -- AUTO_INCREMENT de la tabla `participants_apuntats`
 --
 ALTER TABLE `participants_apuntats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `usuari`
