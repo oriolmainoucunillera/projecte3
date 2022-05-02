@@ -2,7 +2,7 @@
     session_start(); // obrim la sessió
 
     // Fem la connexió
-    $connexio = new mysqli("localhost", "root", "", "projectemedia");
+    $connexio = new mysqli("localhost", "root", "", "projecteaplicaciointeractiva");
     $connexio->set_charset("utf8");
 
     // Comprovar si funciona --> si no funciona es mostra un error a la web
